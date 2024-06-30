@@ -21,4 +21,4 @@ class Personnage:
 
 
     def bonus(self):
-       self.points = 200
+       self.points = 300
