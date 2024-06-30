@@ -46,7 +46,16 @@ jobs:
       - name: Handle test failures
         if: failure()
         run: |
-          unique_branch_suffix=$(date +%s)
+          current_date=$(date +%Y%m%d)
+          counter_file="failure_branch_counter.txt"
+          if [ -f "$counter_file" ]; then
+            counter=$(cat "$counter_file")
+            counter=$((counter + 1))
+          else
+            counter=1
+          fi
+          echo "$counter" > "$counter_file"
+          unique_branch_suffix="${current_date}_$counter"
           git checkout -b failure/$unique_branch_suffix
           git push origin failure/$unique_branch_suffix
           
