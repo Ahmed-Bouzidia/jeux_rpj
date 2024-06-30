@@ -29,6 +29,7 @@ jobs:
         run: git fetch
 
       - name: Checkout main branch
+	run : git stash
         run: git checkout main
 
       - name: Merge dev branch into main
