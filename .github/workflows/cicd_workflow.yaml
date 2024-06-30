@@ -22,15 +22,16 @@ jobs:
         with:
           python-version: '3.12.0'
 
-      - name: Git fetch
-        run: git fetch
-
       - name: Run tests
         run: python src/rpg_test.py
 
+      - name: Stash changes
+        run: git stash --include-untracked
+
+      - name: Fetch updates from remote
+        run: git fetch origin
 
       - name: Checkout main branch
-	run : git stash
         run: git checkout main
 
       - name: Merge dev branch into main
@@ -39,7 +40,10 @@ jobs:
       - name: Push to main branch
         run: git push origin main
 
-      - name: test_ko
+      - name: Apply stashed changes
+        run: git stash pop
+
+      - name: Handle test failures
         if: failure()
         run: |
           unique_branch_suffix=$(date +%s)
