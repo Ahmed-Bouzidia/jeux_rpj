@@ -38,6 +38,10 @@ class TestPersonnage(unittest.TestCase):
         self.assertFalse(victime.is_alive())
 
 
+    def test_bonus(self):
+        personnage = Personnage()
+        personnage.bonus()
+        self.assertEqual(200,personnage.get_points())
 
 if __name__ == '__main__':
     unittest.main()
