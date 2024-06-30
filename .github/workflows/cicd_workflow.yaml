@@ -22,16 +22,15 @@ jobs:
         with:
           python-version: '3.12.0'
 
-      - name: Run tests
-        run: python src/rpg_test.py
-
       - name: Git fetch
         run: git fetch
 
-      - name: Git stash
-        run: git stash
-	
+      - name: Run tests
+        run: python src/rpg_test.py
+
+
       - name: Checkout main branch
+	run : git stash
         run: git checkout main
 
       - name: Merge dev branch into main
