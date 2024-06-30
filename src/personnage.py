@@ -19,5 +19,5 @@ class Personnage:
         if victime.points == 0:
             victime.isAlive = False
 
-    def bonus(self):
-        self.points = 200
+   # def bonus(self):
+   #     self.points = 200
